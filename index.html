@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sagar Public School</title>
-    <meta http-equiv="refresh" content="0; url=googlechrome://navigate?url=https://drive.google.com/uc?export=download&id=1wTbmegp4D6gr61O6s3ww0pl1_wwPSeVw">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Isse button screen ke beech mein aayega */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .share-btn {
+            background-color: #25D366; 
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .share-btn:active {
+            transform: scale(0.95); /* Click karne par chota hoga */
+        }
+    </style>
 </head>
-<body style="text-align: center; padding-top: 50px; font-family: sans-serif;">
-    <h3>Downloading in Browser...</h3>
-    <p>Agar Chrome nahi khula toh niche click karein:</p>
-    <a href="https://drive.google.com/uc?export=download&id=1wTbmegp4D6gr61O6s3ww0pl1_wwPSeVw" style="color: blue; font-weight: bold;">Click Here to Download</a>
+<body>
+
+    <button class="share-btn" onclick="shareApp()">
+        Share App Link
+    </button>
 
     <script>
-        // Backup: Agar meta refresh fail ho jaye
-        setTimeout(function() {
-            window.location.href = "googlechrome://navigate?url=https://drive.google.com/uc?export=download&id=1wTbmegp4D6gr61O6s3ww0pl1_wwPSeVw";
-        }, 500);
+    function shareApp() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Download our App',
+                text: 'Hello! Download this Education App from here:',
+                url: 'https://drive.google.com/uc?export=download&id=1wTbmegp4D6gr61O6s3ww0pl1_wwPSeVw'
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        } else {
+            alert("Please use a mobile browser to share.");
+        }
+    }
     </script>
+
 </body>
 </html>
